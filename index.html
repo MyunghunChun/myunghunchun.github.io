@@ -1,26 +1,76 @@
+---
+layout: default
+title: Home
+---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="refresh" content="0;url=https://yaerhee.github.io/portfolio/" />
-  <link rel="canonical" href="https://yaerhee.github.io/portfolio/" />
-  <meta name="robots" content="noindex" />
-  <title>Redirecting…</title>
-  <script>
-    // Immediate JavaScript redirect as a fallback for meta-refresh
-    window.location.replace("https://yaerhee.github.io/portfolio/");
-  </script>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; text-align:center; padding:4rem; color:#222; }
-    a.button {
-      display:inline-block; margin-top:1rem; padding:0.6rem 1rem; border-radius:6px; background:#0366d6; color:#fff; text-decoration:none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
 </head>
 <body>
-  <h1>Redirecting…</h1>
-  <p>This page has moved to <a href="https://yaerhee.github.io/portfolio/">https://yaerhee.github.io/portfolio/</a></p>
-  <p>If your browser doesn't redirect automatically, <a class="button" href="https://yaerhee.github.io/portfolio/">click here to continue</a></p>
+  <header class="site-header container">
+    <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    <nav class="site-nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="site-main container">
+    <section id="hero" class="hero">
+      <h2>Hello — I'm {{ site.title | split: " " | first }}</h2>
+      <p>{{ site.description }}</p>
+      <p><a class="cta" href="#projects">See my work</a></p>
+    </section>
+
+    <section id="about" class="about">
+      <h3>About</h3>
+      <p>Replace this paragraph with your own bio. This site is powered by Jekyll — edit files in the repository to update content.</p>
+    </section>
+
+    <section id="projects" class="projects">
+      <h3>Projects</h3>
+      <div class="project-grid">
+        <div class="project-card">
+          <strong>Project One</strong>
+          <p>Short description. <a href="#">View →</a></p>
+        </div>
+        <div class="project-card">
+          <strong>Project Two</strong>
+          <p>Short description. <a href="#">View →</a></p>
+        </div>
+        <div class="project-card">
+          <strong>Project Three</strong>
+          <p>Short description. <a href="#">View →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="blog">
+      <h3>Latest Posts</h3>
+      <ul>
+        {% for post in site.posts limit:5 %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> — <small>{{ post.date | date: "%b %-d, %Y" }}</small></li>
+        {% endfor %}
+      </ul>
+      <p><a href="/blog/">Read all posts →</a></p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} • <a href="https://github.com/{{ site.github_username }}">GitHub</a></p>
+  </footer>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
-
