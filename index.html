@@ -1,27 +1,177 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio — Your Name</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <meta name="description" content="Portfolio & blog">
+  <meta charset="UTF-8" />
+  <title>DevOps / Build System Engineer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top">YourPortfolio</a>
-      <nav class="nav" id="site-nav">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#career">Career</a>
-        <a href="#projects">Projects</a>
-        <a href="/blog/">Blog</a>
-      </nav>
-      <button id="nav-toggle" aria-label="Toggle menu">☰</button>
-    </div>
-  </header>
 
+<header>
+  <h1>DevOps / Build System Engineer</h1>
+  <p>
+    10+ years of experience in large-scale TV platform development,  
+    CI/CD pipelines, release engineering, and build system architecture.
+  </p>
+</header>
+
+<section>
+  <h2>Experience</h2>
+
+  <!-- 2011-2013 -->
+  <div class="experience">
+    <div class="period">2011 – 2013</div>
+    <div class="content">
+      <h3>LG Electronics — System Development Engineer</h3>
+      <p class="project">
+        <strong>Project:</strong> Search Service Module for TV Devices
+      </p>
+
+      <ul>
+        <li>
+          Developed a search service module for embedded TV devices using
+          <strong>CLucene</strong>.
+        </li>
+        <li>
+          Focused on system-level development optimized for constrained
+          embedded environments.
+        </li>
+      </ul>
+
+      <p class="tech">
+        <strong>Tech Stack:</strong> C/C++, Makefile
+      </p>
+    </div>
+  </div>
+
+  <!-- 2014~ -->
+  <div class="experience">
+    <div class="period">2014 –</div>
+    <div class="content">
+      <h3>LG Electronics — DevOps / Release Engineer</h3>
+
+      <p class="project">
+        <strong>Platform:</strong> OpenEmbedded (Yocto-based TV Platform)
+      </p>
+
+      <h4>Roles & Responsibilities</h4>
+      <ul>
+        <li>
+          <strong>DevOps Engineer</strong> responsible for
+          end-to-end CI/CD pipelines and release processes.
+        </li>
+        <li>
+          <strong>Release Engineer</strong> acting as integration owner and
+          release gatekeeper.
+        </li>
+        <li>
+          <strong>CI/CD Pipeline Owner</strong> designing and maintaining
+          automated build, test, and release workflows.
+        </li>
+        <li>
+          <strong>Build System Owner</strong> overseeing architecture,
+          development, and long-term maintenance.
+        </li>
+      </ul>
+
+      <h4>Platform Maintenance</h4>
+      <ul>
+        <li>
+          Maintainer of the <strong>Starfish (TV Distro) layer</strong>,
+          managing a dedicated metadata layer for LG TV platforms.
+        </li>
+        <li>
+          Reviewed, accepted, and merged patches from multiple development teams.
+        </li>
+        <li>
+          Ensured compatibility with upstream OpenEmbedded/Yocto projects.
+        </li>
+      </ul>
+
+      <p class="impact">
+        <strong>Impact:</strong> Maintained platform stability while enabling
+        continuous integration across multiple TV products and teams.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2017 -->
+  <div class="experience">
+    <div class="period">2017</div>
+    <div class="content">
+      <h3>LG Electronics — System Development Engineer</h3>
+
+      <p class="project">
+        <strong>Project:</strong> Binary Build System Modernization
+      </p>
+
+      <ul>
+        <li>
+          Designed and implemented an <strong>SDK-based build system</strong>
+          independent of OpenEmbedded.
+        </li>
+        <li>
+          Developed SDKs including environment variables, compiler options,
+          open-source libraries, and toolchains.
+        </li>
+        <li>
+          Migrated binary builds to use the standardized SDK.
+        </li>
+      </ul>
+
+      <p class="impact">
+        <strong>Improvement:</strong>
+        Prevented development environment fragmentation,
+        reduced configuration omissions, and significantly improved
+        long-term maintainability.
+      </p>
+
+      <p class="tech">
+        <strong>Tech Stack:</strong> Makefile, Yocto(OE), Jenkins
+      </p>
+    </div>
+  </div>
+
+  <!-- 2018 -->
+  <div class="experience">
+    <div class="period">2018</div>
+    <div class="content">
+      <h3>LG Electronics — System Development Engineer</h3>
+
+      <p class="project">
+        <strong>Project:</strong> Code Review Automation
+      </p>
+
+      <ul>
+        <li>
+          Built an automated feedback system integrated with
+          <strong>Gerrit</strong> and CI pipelines.
+        </li>
+        <li>
+          Provided immediate validation results when developers submitted
+          code reviews.
+        </li>
+      </ul>
+
+      <p class="impact">
+        <strong>Improvement:</strong>
+        Reduced developer waiting time and accelerated iteration cycles by
+        delivering rapid, automated feedback.
+      </p>
+
+      <p class="tech">
+        <strong>Tech Stack:</strong> Yocto(OE), Jenkins, Gerrit, Python
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <p>© DevOps / Build System Engineer Portfolio</p>
+</footer>
+
+</body>
+</html>
 
