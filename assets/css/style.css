@@ -1,0 +1,12 @@
+body {
+  font-size: 16px;
+}
+
+h1, h2, h3 {
+  margin-top: 1.5em;
+}
+
+strong {
+  color: #2c3e50;
+}
+
