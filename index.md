@@ -36,6 +36,12 @@ Started working with **OpenEmbedded (OE) / Yocto** on **webOS-based TV platforms
 - **Build System Owner**  
   Oversaw the **design, development, and maintenance** of build systems across multiple projects.
 
+**2025**
+CI Team Leader at LG Electronics
+
+- Oversaw and governed CI pipelines supporting multiple product teams
+- Ensured pipeline stability, scalability, and standardization
+
 ---
 
 ## Project: Yocto Base Version Upgrade
