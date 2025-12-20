@@ -15,7 +15,7 @@ Yocto · OpenEmbedded · Embedded Linux · CI/CD · Configuration Management
 **2011 – 2013**  
 Developed a **search service module** for TV devices.
 
-**2014 – Present**  
+**2014 – 2024**  
 Started working with **OpenEmbedded (OE) / Yocto** on **webOS-based TV platforms**.
 
 ### Roles & Responsibilities
