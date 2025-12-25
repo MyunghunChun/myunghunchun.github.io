@@ -3,29 +3,769 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myunghun Chun - DevOps Engineer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Myunghun Chun - DevOps / Release Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --color-bg-primary: #0a0e27;
+    --color-bg-secondary: #151937;
+    --color-bg-tertiary: #1e2442;
+    --color-accent-primary: #00d4ff;
+    --color-accent-secondary: #7c3aed;
+    --color-accent-tertiary: #f59e0b;
+    --color-text-primary: #e2e8f0;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-border: #2d3654;
+    
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    letter-spacing: -0.05em;
+}
+
+.nav-menu {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent-primary);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--color-accent-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.hero-tags {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+}
+
+.hero-cta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.btn {
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    transform: translateY(-2px);
+}
+
+/* Terminal */
+.hero-visual {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.terminal {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-header {
+    background: var(--color-bg-tertiary);
+    padding: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-btn.red { background: #ff5f56; }
+.terminal-btn.yellow { background: #ffbd2e; }
+.terminal-btn.green { background: #27c93f; }
+
+.terminal-body {
+    padding: var(--spacing-md);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.terminal-body p {
+    margin-bottom: 0.5rem;
+}
+
+.prompt {
+    color: var(--color-accent-primary);
+}
+
+.command {
+    color: var(--color-accent-tertiary);
+}
+
+.output {
+    color: var(--color-text-secondary);
+    padding-left: 1rem;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--color-accent-primary);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Section Styles */
+section {
+    padding: var(--spacing-xl) 0;
+    position: relative;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Experience Section */
+.experience {
+    background: var(--color-bg-secondary);
+}
+
+.timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-secondary));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -25px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--color-accent-primary);
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-secondary);
+    box-shadow: 0 0 0 4px var(--color-bg-primary);
+}
+
+.timeline-content {
+    background: var(--color-bg-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-left: var(--spacing-md);
+    transition: var(--transition-normal);
+}
+
+.timeline-content:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateX(5px);
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-bg-tertiary);
+    color: var(--color-accent-primary);
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-content h4 {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.timeline-content ul {
+    list-style: none;
+    margin: var(--spacing-sm) 0;
+}
+
+.timeline-content li {
+    padding-left: var(--spacing-sm);
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+    position: relative;
+}
+
+.timeline-content li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+}
+
+.role-section {
+    margin-top: var(--spacing-md);
+}
+
+.role-section h4 {
+    font-size: 1.1rem;
+    color: var(--color-accent-primary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.role-item {
+    margin-bottom: var(--spacing-md);
+}
+
+.role-item h5 {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.role-item p {
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.role-item ul {
+    margin-left: 1rem;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+}
+
+.project-card:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+}
+
+.project-card.featured {
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+    border: 2px solid var(--color-accent-primary);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-header h3 {
+    font-size: 1.75rem;
+    color: var(--color-text-primary);
+}
+
+.project-badge {
+    padding: 0.25rem 0.75rem;
+    background: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+}
+
+.project-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.meta-item strong {
+    color: var(--color-text-secondary);
+}
+
+.project-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-section {
+    margin-top: var(--spacing-md);
+}
+
+.project-section h4 {
+    color: var(--color-accent-primary);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-section ul {
+    list-style: none;
+}
+
+.project-section li {
+    padding-left: var(--spacing-sm);
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+    position: relative;
+}
+
+.project-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+}
+
+.project-timeline-mini {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm);
+    background: var(--color-bg-primary);
+    border-radius: var(--radius-sm);
+}
+
+.mini-item {
+    text-align: center;
+    padding: var(--spacing-sm);
+}
+
+.mini-item .year {
+    display: block;
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.mini-item .version {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.mini-item .note {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: var(--spacing-sm);
+}
+
+.tech-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--color-bg-tertiary);
+    color: var(--color-accent-primary);
+    font-size: 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+.improvements-section {
+    margin-top: var(--spacing-md);
+}
+
+.improvements-section h4 {
+    color: var(--color-accent-primary);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Other Projects Grid */
+.other-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.small-project-card {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+}
+
+.small-project-card:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateY(-3px);
+}
+
+.small-project-card h4 {
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Contact Section */
+.contact {
+    background: var(--color-bg-secondary);
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+}
+
+.contact-link:hover {
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    transform: translateY(-3px);
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+}
+
+/* Footer */
+.footer {
+    background: var(--color-bg-primary);
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-subtitle {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .hero .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .timeline {
+        padding-left: var(--spacing-sm);
+    }
+    
+    .timeline-content {
+        margin-left: var(--spacing-sm);
+    }
+    
+    .other-projects {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">MC</a>
-            <div class="nav-menu" id="navMenu">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
+            <div class="nav-menu">
                 <a href="#experience" class="nav-link">Experience</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
@@ -34,18 +774,12 @@
         <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="hero-greeting">안녕하세요,</span>
-                    <span class="hero-name">Myunghun Chun</span>
-                    <span class="hero-subtitle">입니다</span>
-                </h1>
-                <p class="hero-description">
-                    DevOps / Release Engineer<br>
-                    <span class="hero-tags">Yocto · Embedded Linux · CI/CD · Build Systems</span>
-                </p>
+                <h1 class="hero-title">Myunghun Chun</h1>
+                <p class="hero-subtitle">DevOps / Release Engineer</p>
+                <p class="hero-tags">Yocto · OpenEmbedded · Embedded Linux · CI/CD · Configuration Management</p>
                 <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -56,13 +790,11 @@
                         <span class="terminal-btn green"></span>
                     </div>
                     <div class="terminal-body">
-                        <p><span class="prompt">$</span> <span class="command">whoami</span></p>
-                        <p class="output">Myunghun Chun - DevOps Engineer</p>
-                        <p><span class="prompt">$</span> <span class="command">cat expertise.txt</span></p>
-                        <p class="output">• Yocto/OpenEmbedded Expert</p>
-                        <p class="output">• CI/CD Pipeline Architect</p>
-                        <p class="output">• Build System Designer</p>
-                        <p class="output">• Release Management</p>
+                        <p><span class="prompt">$</span> <span class="command">cat experience.txt</span></p>
+                        <p class="output">DevOps Engineer</p>
+                        <p class="output">Release Engineer</p>
+                        <p class="output">Build System Owner</p>
+                        <p class="output">Layer Maintainer</p>
                         <p><span class="prompt">$</span> <span class="cursor">_</span></p>
                     </div>
                 </div>
@@ -70,225 +802,77 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-intro">
-                        10년 이상의 경험을 가진 DevOps/Release Engineer로, 
-                        Yocto 및 OpenEmbedded 기반의 임베디드 Linux 시스템 구축과 
-                        대규모 CI/CD 파이프라인 설계 및 운영을 전문으로 합니다.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">10+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Major Yocto Upgrades</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">CI/CD Pipelines</span>
-                        </div>
-                    </div>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🎯</span>
-                            <div>
-                                <h3>Current Role</h3>
-                                <p>CI Team Leader at LG Electronics</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🚀</span>
-                            <div>
-                                <h3>Specialization</h3>
-                                <p>Yocto Build Systems & DevOps Automation</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <span class="skill-icon">🔧</span>
-                        <h3>Build Systems</h3>
-                    </div>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Yocto/OpenEmbedded</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">BitBake</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Make/CMake</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <span class="skill-icon">⚙️</span>
-                        <h3>DevOps & CI/CD</h3>
-                    </div>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Jenkins</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Gerrit</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Git</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <span class="skill-icon">💻</span>
-                        <h3>Programming</h3>
-                    </div>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Bash/Shell</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">C/C++</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <span class="skill-icon">🐧</span>
-                        <h3>Systems</h3>
-                    </div>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Embedded Linux</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">webOS</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Linux Administration</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
+    <!-- Work Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title">Work Experience</h2>
             <div class="timeline">
+                <!-- 2025 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2025 - Present</span>
+                        <span class="timeline-date">2025</span>
                         <h3>CI Team Leader</h3>
                         <h4>LG Electronics</h4>
                         <ul>
-                            <li>CI 파이프라인 거버넌스 및 표준화 주도</li>
-                            <li>여러 제품팀의 CI 파이프라인 안정성 및 확장성 확보</li>
-                            <li>CI 시스템 아키텍처 설계 및 최적화</li>
+                            <li>Oversaw and governed CI pipelines supporting multiple product teams</li>
+                            <li>Ensured pipeline stability, scalability, and standardization</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- 2014-2024 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2014 - 2024</span>
-                        <h3>DevOps / Release Engineer</h3>
+                        <span class="timeline-date">2014 – 2024</span>
+                        <h3>OpenEmbedded (OE) / Yocto on webOS-based TV platforms</h3>
                         <h4>LG Electronics</h4>
-                        <ul>
-                            <li>webOS 기반 TV 플랫폼의 OpenEmbedded/Yocto 시스템 운영</li>
-                            <li>End-to-end CI/CD 파이프라인 구축 및 자동화</li>
-                            <li>Release Gatekeeper로서 통합 워크플로우 관리</li>
-                            <li>Starfish(TV Distribution) Layer 메인테이너</li>
-                            <li>빌드 시스템 설계, 개발 및 유지보수 총괄</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Yocto</span>
-                            <span class="tech-tag">OpenEmbedded</span>
-                            <span class="tech-tag">Jenkins</span>
-                            <span class="tech-tag">Gerrit</span>
-                            <span class="tech-tag">Python</span>
+                        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">
+                            Started working with OpenEmbedded (OE) / Yocto on webOS-based TV platforms.
+                        </p>
+                        
+                        <div class="role-section">
+                            <h4>Roles & Responsibilities</h4>
+                            
+                            <div class="role-item">
+                                <h5>DevOps Engineer</h5>
+                                <p>Responsible for end-to-end CI/CD pipelines, build automation, and release processes.</p>
+                            </div>
+                            
+                            <div class="role-item">
+                                <h5>Release Engineer / Integration Gatekeeper</h5>
+                                <p>Managed integration workflows and acted as a release gatekeeper, ensuring stability and quality of deliverables.</p>
+                            </div>
+                            
+                            <div class="role-item">
+                                <h5>Starfish (TV Distribution) Layer Maintainer</h5>
+                                <p>Maintained a core Yocto layer for the TV division. Responsibilities included reviewing, accepting, and merging patches to ensure:</p>
+                                <ul>
+                                    <li>Layer stability and functionality</li>
+                                    <li>Alignment with upstream Yocto projects</li>
+                                    <li>Long-term maintainability and compatibility</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="role-item">
+                                <h5>Build System Owner</h5>
+                                <p>Oversaw the design, development, and maintenance of build systems across multiple projects.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 2011-2013 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2011 - 2013</span>
-                        <h3>System Developer</h3>
+                        <span class="timeline-date">2011 – 2013</span>
+                        <h3>System Development</h3>
                         <h4>LG Electronics</h4>
                         <ul>
-                            <li>TV 디바이스용 검색 서비스 모듈 개발</li>
-                            <li>C/C++ 기반 시스템 개발</li>
+                            <li>Developed a search service module for TV devices.</li>
                         </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">C/C++</span>
-                            <span class="tech-tag">Makefile</span>
-                            <span class="tech-tag">Clucene</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -298,121 +882,180 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Major Projects</h2>
+            <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
+                <!-- Featured: Yocto Base Version Upgrade -->
                 <div class="project-card featured">
                     <div class="project-header">
-                        <span class="project-badge">Featured</span>
                         <h3>Yocto Base Version Upgrade</h3>
+                        <span class="project-badge">Featured</span>
                     </div>
+                    
                     <p class="project-description">
-                        장기 제품 라이프사이클에 걸쳐 CVE 수정, 오픈소스 업데이트, 툴체인 변경 및 버그 패치를 위한 
-                        Yocto Project 베이스 버전 업그레이드 프로젝트
+                        Upgraded the Yocto Project base version to address CVE fixes, open-source updates, toolchain changes, and additional bug patches across long-term product lifecycles.
                     </p>
-                    <div class="project-timeline-mini">
-                        <div class="mini-item">
-                            <span class="year">2021</span>
-                            <span class="version">Thud → Dunfell 3.1</span>
-                        </div>
-                        <div class="mini-item">
-                            <span class="year">2023</span>
-                            <span class="version">Dunfell 4.0</span>
-                        </div>
-                        <div class="mini-item">
-                            <span class="year">2025</span>
-                            <span class="version">Scarthgap 5.0</span>
+                    
+                    <div class="project-section">
+                        <h4>Timeline</h4>
+                        <div class="project-timeline-mini">
+                            <div class="mini-item">
+                                <span class="year">2021 (TV Division)</span>
+                                <span class="version">Thud (2.6) → Dunfell (3.1)</span>
+                                <span class="note">(Yocto Dunfell released: April 2020)</span>
+                            </div>
+                            <div class="mini-item">
+                                <span class="year">2023 (TV Division)</span>
+                                <span class="version">Dunfell (4.0)</span>
+                                <span class="note">(Released: May 2022)</span>
+                            </div>
+                            <div class="mini-item">
+                                <span class="year">2025 (TV Division)</span>
+                                <span class="version">Scarthgap (5.0)</span>
+                                <span class="note">(Released: April 2024)</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-responsibilities">
-                        <h4>Key Responsibilities:</h4>
+                    
+                    <div class="project-section">
+                        <h4>Role & Responsibilities</h4>
                         <ul>
-                            <li>SoC 벤더와 협력하여 BSP 레이어 호환성 조정</li>
-                            <li>Core Yocto 레이어 업데이트 (poky, openembedded-core, meta-openembedded)</li>
-                            <li>빌드타임 에러 식별 및 해결</li>
-                            <li>SDK 릴리스 및 바이너리 업데이트 관리</li>
-                            <li>시스템 이미지(EPK) 릴리스 및 런타임 이슈 안정화</li>
+                            <li>Coordinated with SoC vendors to adapt and align BSP layers for compatibility with newer Yocto versions</li>
+                            <li>Updated core Yocto layers including poky, openembedded-core, and meta-openembedded</li>
+                            <li>Identified and resolved build-time errors caused by dependency and toolchain changes</li>
+                            <li>Released SDKs and maintained updated binary deliverables</li>
+                            <li>Released system images (EPK) and handled runtime issue fixes and stabilization</li>
+                            <li>Applied and managed mainline changes, ensuring consistency across branches and releases</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Other Projects Section Title -->
+                <div style="grid-column: 1/-1; margin-top: var(--spacing-lg);">
+                    <h3 style="font-size: 2rem; color: var(--color-text-primary); margin-bottom: var(--spacing-md);">Other Projects</h3>
+                </div>
+
+                <!-- NASA -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>NASA Project</h3>
-                        <span class="project-year">2024-2025</span>
+                        <h3>NASA</h3>
                     </div>
-                    <p class="project-description">
-                        여러 디바이스 변형에 걸쳐 단일 바이너리(EPK) 배포를 위한 프로젝트. 
-                        Feature-level profiling을 활용한 구성 관리 접근법 평가
-                    </p>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2024 – 2025</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> Development Environment / Software Configuration & Build Management</span>
+                    </div>
+                    <div class="project-section">
+                        <h4>Project Goals</h4>
+                        <ul>
+                            <li>Deploying a single binary (EPK) across multiple device variants</li>
+                            <li>Evaluating configuration management approaches using feature-level profiling</li>
+                        </ul>
+                    </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">Yocto</span>
+                        <span class="tech-tag">Yocto (OE)</span>
                         <span class="tech-tag">Jenkins</span>
                         <span class="tech-tag">Python</span>
                     </div>
                 </div>
 
+                <!-- PUMA -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>PUMA Package Update Framework</h3>
-                        <span class="project-year">2022-2023</span>
+                        <h3>PUMA – Package Update Framework for TV Devices</h3>
                     </div>
-                    <p class="project-description">
-                        TV 디바이스를 위한 패키지 업데이트 프레임워크 개발. 
-                        효율적인 업데이트 패키징 시스템 구축
-                    </p>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2022 – 2023</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> Development of Packaging for Updates</span>
+                    </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">Yocto</span>
+                        <span class="tech-tag">Yocto (OE)</span>
                         <span class="tech-tag">Jenkins</span>
                         <span class="tech-tag">Python</span>
                     </div>
                 </div>
 
+                <!-- SEE TV -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>SEE TV Modularization</h3>
-                        <span class="project-year">2018-2019</span>
+                        <h3>SEE TV – Modularization of Broadcast Service Modules</h3>
                     </div>
-                    <p class="project-description">
-                        방송 서비스 모듈의 모듈화 프로젝트. 
-                        개발 환경 및 소프트웨어 구성/빌드 관리 담당
-                    </p>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2018 – 2019</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> Development Environment / Software Configuration & Build Management</span>
+                    </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">Yocto</span>
+                        <span class="tech-tag">Yocto (OE)</span>
                         <span class="tech-tag">Jenkins</span>
                         <span class="tech-tag">Gerrit</span>
                         <span class="tech-tag">Python</span>
                     </div>
                 </div>
 
+                <!-- Code Review Automation -->
                 <div class="project-card">
                     <div class="project-header">
                         <h3>Code Review Automation</h3>
-                        <span class="project-year">2018</span>
                     </div>
-                    <p class="project-description">
-                        코드 리뷰 업데이트 시 즉각적인 피드백 제공으로 개발자 대기 시간 감소. 
-                        자동화된 리뷰 시스템 구축
-                    </p>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2018</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> System Development</span>
+                    </div>
+                    <div class="improvements-section">
+                        <h4>Improvements</h4>
+                        <ul>
+                            <li>Provided immediate feedback during code review updates</li>
+                            <li>Reduced developer downtime</li>
+                        </ul>
+                    </div>
                     <div class="tech-tags">
+                        <span class="tech-tag">Yocto (OE)</span>
                         <span class="tech-tag">Jenkins</span>
                         <span class="tech-tag">Gerrit</span>
                         <span class="tech-tag">Python</span>
                     </div>
                 </div>
 
+                <!-- Build System Update -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Build System for Binary Distribution</h3>
-                        <span class="project-year">2017</span>
+                        <h3>Build System Update for Binary Distribution</h3>
                     </div>
-                    <p class="project-description">
-                        바이너리 배포를 위한 빌드 시스템 업데이트. SDK 개발 및 non-OE 바이너리 빌드 시스템 구축으로 
-                        개발 환경 단편화 방지
-                    </p>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2017</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> System Development</span>
+                    </div>
+                    <div class="improvements-section">
+                        <h4>Improvements</h4>
+                        <ul>
+                            <li>Developed an SDK including environment variables, compile options, open-source libraries, and toolchains</li>
+                            <li>Built a non-OE binary build system based on the SDK</li>
+                            <li>Prevented development environment fragmentation and configuration omissions</li>
+                        </ul>
+                    </div>
                     <div class="tech-tags">
                         <span class="tech-tag">Makefile</span>
-                        <span class="tech-tag">Yocto</span>
+                        <span class="tech-tag">Yocto (OE)</span>
                         <span class="tech-tag">Jenkins</span>
+                    </div>
+                </div>
+
+                <!-- Search Service Module -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Search Service Module for TV Devices (Clucene)</h3>
+                    </div>
+                    <div class="project-meta">
+                        <span class="meta-item"><strong>Period:</strong> 2011 – 2013</span>
+                        <span class="meta-item"><strong>Company:</strong> LG Electronics</span>
+                        <span class="meta-item"><strong>Role:</strong> System Development</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C / C++</span>
+                        <span class="tech-tag">Makefile</span>
                     </div>
                 </div>
             </div>
@@ -422,23 +1065,12 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Contact</h2>
             <div class="contact-content">
-                <p class="contact-intro">
-                    새로운 기회나 협업에 관심이 있으시다면 언제든지 연락주세요.
-                </p>
                 <div class="contact-info">
                     <a href="https://github.com/MyunghunChun" target="_blank" class="contact-link">
                         <span class="contact-icon">📁</span>
                         <span>GitHub</span>
-                    </a>
-                    <a href="mailto:your.email@example.com" class="contact-link">
-                        <span class="contact-icon">📧</span>
-                        <span>Email</span>
-                    </a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
-                        <span class="contact-icon">💼</span>
-                        <span>LinkedIn</span>
                     </a>
                 </div>
             </div>
@@ -449,10 +1081,8 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Myunghun Chun. All rights reserved.</p>
-            <p class="footer-subtitle">DevOps Engineer | Build Systems Specialist</p>
+            <p class="footer-subtitle">DevOps / Release Engineer | Yocto & Embedded Linux</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
